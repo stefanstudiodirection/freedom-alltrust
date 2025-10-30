@@ -66,9 +66,20 @@ const AccountDetail: React.FC = () => {
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
   const handleMoveFunds = () => {
+    let destinationAccount: AccountType;
+    
+    if (accountId === 'pension') {
+      destinationAccount = 'savings';
+    } else if (accountId === 'savings') {
+      destinationAccount = 'currentAccount';
+    } else {
+      return;
+    }
+    
     navigate('/move-funds', {
       state: {
-        sourceAccount: accountId
+        sourceAccount: accountId,
+        destinationAccount
       }
     });
   };
