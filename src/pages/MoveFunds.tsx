@@ -20,11 +20,11 @@ type Currency = {
 const currencies: Record<string, Currency> = {
   GBP: { code: 'GBP', symbol: '£', flag: '🇬🇧', locale: 'en-GB' },
   EUR: { code: 'EUR', symbol: '€', flag: '🇪🇺', locale: 'de-DE' },
-  USD: { code: 'USD', symbol: '$', flag: '🇺🇸', locale: 'en-US' },
-  CAD: { code: 'CAD', symbol: '$', flag: '🇨🇦', locale: 'en-CA' },
-  AUD: { code: 'AUD', symbol: '$', flag: '🇦🇺', locale: 'en-AU' },
+  USD: { code: 'USD', symbol: 'US$', flag: '🇺🇸', locale: 'en-US' },
+  CAD: { code: 'CAD', symbol: 'CA$', flag: '🇨🇦', locale: 'en-CA' },
+  AUD: { code: 'AUD', symbol: 'A$', flag: '🇦🇺', locale: 'en-AU' },
   JPY: { code: 'JPY', symbol: '¥', flag: '🇯🇵', locale: 'ja-JP' },
-  CHF: { code: 'CHF', symbol: '₣', flag: '🇨🇭', locale: 'de-CH' },
+  CHF: { code: 'CHF', symbol: 'CHF', flag: '🇨🇭', locale: 'de-CH' },
 };
 
 export const MoveFunds: React.FC = () => {
