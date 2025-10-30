@@ -68,11 +68,11 @@ const AccountDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto flex flex-col">
       <div className="px-4 py-6 flex flex-col flex-1">
-        <button className="mb-4" onClick={() => navigate(-1)}>
+        <button className="mb-4" onClick={() => navigate('/')}>
           <ArrowLeft className="w-6 h-6" />
         </button>
         <div>
-          <div className="mb-2 text-sm opacity-50">Current Account</div>
+          <div className="mb-2 text-sm opacity-50">{config.display}</div>
           <div className="text-2xl mb-1 font-semibold">{config.display}</div>
           <div className="mb-4 text-sm opacity-80">{config.subtitle}</div>
           <div className="rounded-lg bg-[#181818] flex items-center justify-between px-4 py-3 mb-4">
