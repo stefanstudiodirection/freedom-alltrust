@@ -2,32 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, SlidersHorizontal, ArrowDown, ArrowUp, ArrowRightLeft } from "lucide-react";
 import { BottomNavigation } from "@/components/BottomNavigation";
-import { AccountType } from "@/contexts/AccountContext";
-
-interface Transaction {
-  id: string;
-  type: "withdrawal" | "topup" | "transfer";
-  account: AccountType;
-  amount: number;
-  date: Date;
-}
-
-// Sample transaction data
-const sampleTransactions: Transaction[] = [
-  { id: "1", type: "withdrawal", account: "currentAccount", amount: -250.00, date: new Date("2025-10-29T09:25:00") },
-  { id: "2", type: "topup", account: "currentAccount", amount: 300.00, date: new Date("2025-10-16T13:15:00") },
-  { id: "3", type: "withdrawal", account: "currentAccount", amount: -80.00, date: new Date("2025-10-12T11:25:00") },
-  { id: "4", type: "transfer", account: "currentAccount", amount: -90.00, date: new Date("2025-10-06T20:50:00") },
-  { id: "5", type: "withdrawal", account: "currentAccount", amount: -80.00, date: new Date("2025-10-01T15:25:00") },
-  { id: "6", type: "topup", account: "currentAccount", amount: 300.00, date: new Date("2025-09-25T13:15:00") },
-  { id: "7", type: "transfer", account: "currentAccount", amount: -90.00, date: new Date("2025-09-12T11:25:00") },
-  { id: "8", type: "withdrawal", account: "savings", amount: -150.00, date: new Date("2025-10-20T14:30:00") },
-  { id: "9", type: "topup", account: "savings", amount: 500.00, date: new Date("2025-10-10T10:20:00") },
-  { id: "10", type: "withdrawal", account: "pension", amount: -1000.00, date: new Date("2025-10-15T16:45:00") },
-];
+import { AccountType, useAccounts } from "@/contexts/AccountContext";
 
 const Transactions: React.FC = () => {
   const [selectedAccount, setSelectedAccount] = useState<AccountType>("currentAccount");
+  const { transactions } = useAccounts();
   const navigate = useNavigate();
 
   const accountLabels: Record<AccountType, string> = {
@@ -36,7 +15,7 @@ const Transactions: React.FC = () => {
     pension: "Pension"
   };
 
-  const filteredTransactions = sampleTransactions
+  const filteredTransactions = transactions
     .filter(t => t.account === selectedAccount)
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 

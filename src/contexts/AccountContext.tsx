@@ -10,8 +10,19 @@ export interface Account {
   color: string;
 }
 
+export interface Transaction {
+  id: string;
+  type: "withdrawal" | "topup" | "transfer";
+  account: AccountType;
+  amount: number;
+  date: Date;
+  recipient?: string;
+  status: 'completed' | 'pending' | 'failed';
+}
+
 interface AccountContextType {
   accounts: Record<AccountType, Account>;
+  transactions: Transaction[];
   updateBalance: (accountId: AccountType, newBalance: number) => void;
   transferFunds: (from: AccountType, to: AccountType, amount: number) => void;
   getAccount: (accountId: AccountType) => Account;
@@ -85,6 +96,14 @@ const INITIAL_ACCOUNTS: Record<AccountType, Account> = {
 };
 
 const STORAGE_KEY = 'account_balances';
+const TRANSACTIONS_KEY = 'account_transactions';
+
+// Initial sample transactions
+const INITIAL_TRANSACTIONS: Transaction[] = [
+  { id: "1", type: "withdrawal", account: "currentAccount", amount: -250.00, date: new Date("2025-10-29T09:25:00"), recipient: "ATM Withdrawal", status: "completed" },
+  { id: "2", type: "topup", account: "currentAccount", amount: 300.00, date: new Date("2025-10-16T13:15:00"), recipient: "Salary Deposit", status: "completed" },
+  { id: "3", type: "transfer", account: "savings", amount: 500.00, date: new Date("2025-10-10T10:20:00"), recipient: "From Current Account", status: "completed" },
+];
 
 export const AccountProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [accounts, setAccounts] = useState<Record<AccountType, Account>>(() => {
@@ -106,6 +125,24 @@ export const AccountProvider: React.FC<{ children: ReactNode }> = ({ children })
     return INITIAL_ACCOUNTS;
   });
 
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
+    // Load from localStorage on initialization
+    const stored = localStorage.getItem(TRANSACTIONS_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        // Convert date strings back to Date objects
+        return parsed.map((t: any) => ({
+          ...t,
+          date: new Date(t.date)
+        }));
+      } catch (e) {
+        return INITIAL_TRANSACTIONS;
+      }
+    }
+    return INITIAL_TRANSACTIONS;
+  });
+
   // Persist to localStorage whenever accounts change
   useEffect(() => {
     const balances = {
@@ -115,6 +152,11 @@ export const AccountProvider: React.FC<{ children: ReactNode }> = ({ children })
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(balances));
   }, [accounts]);
+
+  // Persist transactions to localStorage
+  useEffect(() => {
+    localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(transactions));
+  }, [transactions]);
 
   const updateBalance = (accountId: AccountType, newBalance: number) => {
     setAccounts(prev => ({
@@ -138,6 +180,34 @@ export const AccountProvider: React.FC<{ children: ReactNode }> = ({ children })
         balance: prev[to].balance + amount
       }
     }));
+
+    // Create transaction records for both accounts
+    const timestamp = new Date();
+    const transactionId = `txn_${Date.now()}`;
+    
+    // Transaction for source account (withdrawal)
+    const sourceTransaction: Transaction = {
+      id: `${transactionId}_from`,
+      type: "transfer",
+      account: from,
+      amount: -amount,
+      date: timestamp,
+      recipient: `To ${accounts[to].name}`,
+      status: "completed"
+    };
+
+    // Transaction for destination account (deposit)
+    const destTransaction: Transaction = {
+      id: `${transactionId}_to`,
+      type: "transfer",
+      account: to,
+      amount: amount,
+      date: timestamp,
+      recipient: `From ${accounts[from].name}`,
+      status: "completed"
+    };
+
+    setTransactions(prev => [destTransaction, sourceTransaction, ...prev]);
   };
 
   const getAccount = (accountId: AccountType): Account => {
@@ -145,7 +215,7 @@ export const AccountProvider: React.FC<{ children: ReactNode }> = ({ children })
   };
 
   return (
-    <AccountContext.Provider value={{ accounts, updateBalance, transferFunds, getAccount }}>
+    <AccountContext.Provider value={{ accounts, transactions, updateBalance, transferFunds, getAccount }}>
       {children}
     </AccountContext.Provider>
   );
