@@ -65,6 +65,15 @@ const AccountDetail: React.FC = () => {
     .filter(t => t.account === accountId)
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
+  const handleMoveFunds = () => {
+    navigate('/move-funds', {
+      state: {
+        sourceAccount: accountId
+      }
+    });
+  };
+
+
   return (
     <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto flex flex-col">
       <div className="px-4 py-6 flex flex-col flex-1">
@@ -110,7 +119,7 @@ const AccountDetail: React.FC = () => {
             </div>
           )}
           {config.moveFundsButton && (
-            <button className="w-full py-3 bg-[#A488F5] rounded-lg mb-4 font-semibold text-black text-base">Move funds</button>
+            <button onClick={handleMoveFunds} className="w-full py-3 bg-[#A488F5] rounded-lg mb-4 font-semibold text-black text-base">Move funds</button>
           )}
           {/* TRANSACTIONS */}
           <div className="mt-6">
