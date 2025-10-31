@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAccounts, AccountType } from "@/contexts/AccountContext";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowDown, ArrowUp, ArrowRightLeft } from "lucide-react";
 
 const accountConfig: Record<AccountType, {
   display: string;
@@ -89,6 +89,32 @@ function formatDate(date: Date) {
   const year = d.getFullYear();
   const time = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false });
   return `${day} ${month} ${year}, ${time}`;
+}
+
+function getTransactionIcon(type: string) {
+  switch (type) {
+    case "withdrawal":
+      return <ArrowDown className="w-5 h-5 text-white" />;
+    case "topup":
+      return <ArrowUp className="w-5 h-5 text-white" />;
+    case "transfer":
+      return <ArrowRightLeft className="w-5 h-5 text-white" />;
+    default:
+      return null;
+  }
+}
+
+function getTransactionLabel(type: string) {
+  switch (type) {
+    case "withdrawal":
+      return "Withdrawal";
+    case "topup":
+      return "Top up";
+    case "transfer":
+      return "Transfer";
+    default:
+      return type;
+  }
 }
 
 const AccountDetail: React.FC = () => {
@@ -185,20 +211,18 @@ const AccountDetail: React.FC = () => {
             {filteredTransactions.length === 0 ? (
               <div className="opacity-50 text-sm">No transactions</div>
             ) : (
-              <div className="flex flex-col gap-3">
+              <div>
                 {filteredTransactions.map(tr => (
-                  <div key={tr.id} className="flex items-center justify-between bg-[#181818] rounded-lg px-3 py-3">
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        {tr.type === "withdrawal" && <span className="w-5 h-5 bg-gray-900 rounded flex items-center justify-center">↓</span>}
-                        {tr.type === "topup" && <span className="w-5 h-5 bg-gray-900 rounded flex items-center justify-center">↑</span>}
-                        {tr.type === "transfer" && <span className="w-5 h-5 bg-gray-900 rounded flex items-center justify-center">⇄</span>}
-                        <span className="font-bold text-xs">{tr.type.charAt(0).toUpperCase() + tr.type.slice(1)}</span>
-                      </div>
-                      <span className="text-xs opacity-70">{formatDate(tr.date)}</span>
+                  <div key={tr.id} className="flex items-center gap-4 py-4 border-b border-[#2C2C2E] hover:bg-[#1C1C1E]/30 transition-colors cursor-pointer">
+                    <div className="w-12 h-12 rounded-lg bg-[#2C2C2E] flex items-center justify-center flex-shrink-0">
+                      {getTransactionIcon(tr.type)}
                     </div>
-                    <div className={`text-right text-base font-medium ${tr.amount > 0 ? 'text-[#A488F5]' : 'text-white'}`}>
-                      {tr.amount > 0 ? '+ ' : '- '}{formatCurrency(Math.abs(tr.amount))}
+                    <div className="flex-1 min-w-0">
+                      <div className="font-medium text-white">{getTransactionLabel(tr.type)}</div>
+                      <div className="text-sm text-white/60">{formatDate(tr.date)}</div>
+                    </div>
+                    <div className={`text-right font-semibold ${tr.amount > 0 ? 'text-[#34C759]' : 'text-white'}`}>
+                      {tr.amount > 0 ? '+' : '-'}£{Math.abs(tr.amount).toFixed(2)}
                     </div>
                   </div>
                 ))}
