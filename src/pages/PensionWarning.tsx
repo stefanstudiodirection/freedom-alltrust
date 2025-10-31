@@ -31,7 +31,7 @@ export const PensionWarning: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto flex flex-col">
+    <div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto flex flex-col">
       {/* <StatusBar /> */}
       
       <div className="px-4 py-6 flex flex-col flex-1">
@@ -39,17 +39,17 @@ export const PensionWarning: React.FC = () => {
         <header className="flex items-center mb-8">
         <button 
           onClick={handleBack}
-          className="w-12 h-12 rounded-full bg-[#211E1E] flex items-center justify-center hover:bg-[#2a2626] transition-colors"
+          className="w-12 h-12 rounded-full bg-white dark:bg-[#211E1E] border border-border flex items-center justify-center hover:bg-gray-50 dark:hover:bg-[#2a2626] transition-colors text-foreground"
           aria-label="Go back"
         >
           <ArrowLeft className="w-6 h-6" />
         </button>
-        <h1 className="flex-1 text-center text-lg font-medium pr-12">Move funds</h1>
+        <h1 className="flex-1 text-center text-lg font-medium pr-12 text-foreground">Move funds</h1>
       </header>
 
       {/* Warning Icon */}
       <div className="flex justify-center mb-6">
-        <div className="w-20 h-20 bg-[#211E1E] rounded-2xl flex items-center justify-center">
+        <div className="w-20 h-20 bg-white dark:bg-[#211E1E] border border-border rounded-2xl flex items-center justify-center">
           <div className="w-12 h-12 bg-[#E4B33D] rounded-lg flex items-center justify-center">
             <AlertTriangle className="w-7 h-7 text-black" fill="black" />
           </div>

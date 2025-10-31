@@ -53,7 +53,7 @@ export const HomeDark: React.FC = () => {
   };
 
   return (
-    <div className="justify-center items-stretch flex max-w-[480px] w-full flex-col overflow-hidden bg-black mx-auto min-h-screen pb-20">
+    <div className="justify-center items-stretch flex max-w-[480px] w-full flex-col overflow-hidden bg-[#F3F3F3] dark:bg-black mx-auto min-h-screen pb-20">
       <div className="w-full">
         {/* <StatusBar /> */}
 
@@ -99,7 +99,7 @@ export const HomeDark: React.FC = () => {
 
         <section className="w-full pb-6 px-4 mt-6" aria-label="Promotions">
           <div className="flex w-full items-center gap-[40px_100px] leading-none justify-between">
-            <h2 className="text-white text-[19px] font-normal self-stretch my-auto">Promotions</h2>
+            <h2 className="text-foreground text-[19px] font-normal self-stretch my-auto">Promotions</h2>
             <button
               className="self-stretch flex items-center gap-1 text-lg text-[#A488F5] font-medium my-auto hover:text-[#9575e8] transition-colors"
               onClick={handleSeeAllPromotions}
@@ -144,7 +144,7 @@ export const HomeDark: React.FC = () => {
 
         <section className="w-full pb-6 px-4 mt-6" aria-label="Learning resources">
           <div className="flex w-full items-center justify-between mb-4">
-            <h2 className="text-white text-[19px] font-normal">Learning resources</h2>
+            <h2 className="text-foreground text-[19px] font-normal">Learning resources</h2>
             <button
               onClick={handleNavigateToLearn}
               className="flex items-center gap-1 text-lg text-[#A488F5] font-medium hover:text-[#9575e8] transition-colors"

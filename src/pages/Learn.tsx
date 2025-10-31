@@ -6,7 +6,7 @@ const Learn: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto p-4">
+    <div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto p-4">
       <button 
         onClick={() => navigate(-1)} 
         className="mb-6 hover:opacity-70 transition-opacity"

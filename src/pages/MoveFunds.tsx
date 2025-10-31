@@ -100,18 +100,18 @@ export const MoveFunds: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto flex flex-col">
+    <div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto flex flex-col">
       <div className="px-4 py-6 flex flex-col flex-1">
         {/* Header */}
         <header className="flex items-center mb-8">
           <button 
             onClick={handleBack}
-            className="w-12 h-12 rounded-full bg-[#211E1E] flex items-center justify-center hover:bg-[#2a2626] transition-colors"
+            className="w-12 h-12 rounded-full bg-white dark:bg-[#211E1E] border border-border flex items-center justify-center hover:bg-gray-50 dark:hover:bg-[#2a2626] transition-colors text-foreground"
             aria-label="Go back"
           >
             <ArrowLeft className="w-6 h-6" />
           </button>
-          <h1 className="flex-1 text-center text-lg font-medium pr-12">Move funds</h1>
+          <h1 className="flex-1 text-center text-lg font-medium pr-12 text-foreground">Move funds</h1>
         </header>
 
         {/* Amount Input Section */}
@@ -123,14 +123,14 @@ export const MoveFunds: React.FC = () => {
             value={amount}
             onChange={handleAmountChange}
             placeholder="0.00"
-            className="text-6xl font-normal tracking-tight text-white bg-transparent border-none outline-none text-center w-full"
+            className="text-6xl font-normal tracking-tight text-foreground bg-transparent border-none outline-none text-center w-full"
             style={{ caretColor: '#A488F5' }}
             autoFocus
           />
           
           {/* Currency Selector */}
           <Select value={currency} onValueChange={setCurrency}>
-            <SelectTrigger className="mt-4 w-auto bg-[#211E1E] border-none text-white hover:bg-[#2a2626] transition-colors">
+            <SelectTrigger className="mt-4 w-auto bg-white dark:bg-[#211E1E] border border-border text-foreground hover:bg-gray-50 dark:hover:bg-[#2a2626] transition-colors">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{currencies[currency].flag}</span>
                 <SelectValue>
@@ -139,12 +139,12 @@ export const MoveFunds: React.FC = () => {
                 {/* <ChevronDown className="w-4 h-4 ml-1" /> */}
               </div>
             </SelectTrigger>
-            <SelectContent className="bg-[#211E1E] border-[#2a2626] text-white">
+            <SelectContent className="bg-white dark:bg-[#211E1E] border-border text-foreground">
               {Object.entries(currencies).map(([code, curr]) => (
                 <SelectItem 
                   key={code} 
                   value={code}
-                  className="hover:bg-[#2a2626] focus:bg-[#2a2626] focus:text-white cursor-pointer"
+                  className="hover:bg-gray-100 dark:hover:bg-[#2a2626] focus:bg-gray-100 dark:focus:bg-[#2a2626] focus:text-foreground cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-xl">{curr.flag}</span>
@@ -159,28 +159,28 @@ export const MoveFunds: React.FC = () => {
         {/* Transfer Cards */}
         <div className="flex-1">
           {/* Move From Card */}
-          <div className="bg-[#211E1E] rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-white dark:bg-[#211E1E] border border-border rounded-lg p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div 
-                className="w-10 h-10 flex items-center justify-center bg-[#000] rounded-[4px]"
+                className="w-10 h-10 flex items-center justify-center bg-[#F3F3F3] dark:bg-[#000] rounded-[4px]"
                 style={{ color: source.color }}
               >
                 <span className="text-2xl">{source.icon}</span>
               </div>
               <div>
                 <p className="text-[#716860] text-sm">Move from</p>
-                <p className="text-white text-base font-medium">{source.name}</p>
+                <p className="text-foreground text-base font-medium">{source.name}</p>
               </div>
             </div>
             <div className="text-right">
               <p className="text-[#716860] text-sm">Balance</p>
-              <p className="text-white text-base font-medium">{formatCurrency(source.balance)}</p>
+              <p className="text-foreground text-base font-medium">{formatCurrency(source.balance)}</p>
             </div>
           </div>
 
           {/* Swap Button */}
           <div className="flex justify-center -my-5 relative z-10">
-            <button className="w-12 h-12 bg-[#211E1E] rounded-full flex items-center justify-center border-4 border-black">
+            <button className="w-12 h-12 bg-white dark:bg-[#211E1E] rounded-full flex items-center justify-center border-4 border-[#F3F3F3] dark:border-black">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M6.74998 3.75C6.74998 3.55109 6.829 3.36032 6.96965 3.21967C7.1103 3.07902 7.30107 3 7.49998 3H16.5C16.6989 3 16.8897 3.07902 17.0303 3.21967C17.171 3.36032 17.25 3.55109 17.25 3.75C17.25 3.94891 17.171 4.13968 17.0303 4.28033C16.8897 4.42098 16.6989 4.5 16.5 4.5H7.49998C7.30107 4.5 7.1103 4.42098 6.96965 4.28033C6.829 4.13968 6.74998 3.94891 6.74998 3.75ZM21.6928 12.4631C21.6361 12.3261 21.54 12.2089 21.4166 12.1265C21.2933 12.044 21.1483 12 21 12H17.25V6.75C17.25 6.55109 17.171 6.36032 17.0303 6.21967C16.8897 6.07902 16.6989 6 16.5 6H7.49998C7.30107 6 7.1103 6.07902 6.96965 6.21967C6.829 6.36032 6.74998 6.55109 6.74998 6.75V12H2.99998C2.85156 11.9999 2.70644 12.0438 2.58299 12.1262C2.45955 12.2086 2.36333 12.3258 2.30651 12.4629C2.2497 12.6 2.23485 12.7509 2.26383 12.8965C2.29282 13.042 2.36435 13.1757 2.46936 13.2806L11.4694 22.2806C11.539 22.3504 11.6217 22.4057 11.7128 22.4434C11.8038 22.4812 11.9014 22.5006 12 22.5006C12.0985 22.5006 12.1961 22.4812 12.2872 22.4434C12.3782 22.4057 12.461 22.3504 12.5306 22.2806L21.5306 13.2806C21.6355 13.1757 21.7068 13.042 21.7357 12.8965C21.7646 12.751 21.7496 12.6002 21.6928 12.4631Z" fill="#716860"/>
             </svg>
@@ -188,22 +188,22 @@ export const MoveFunds: React.FC = () => {
           </div>
 
           {/* Move To Card */}
-          <div className="bg-[#211E1E] rounded-lg p-4 flex items-center justify-between">
+          <div className="bg-white dark:bg-[#211E1E] border border-border rounded-lg p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div 
-                className="w-10 h-10 flex items-center justify-center bg-[#000] rounded-[4px]"
+                className="w-10 h-10 flex items-center justify-center bg-[#F3F3F3] dark:bg-[#000] rounded-[4px]"
                 style={{ color: destination.color }}
               >
                 <span className="text-2xl">{destination.icon}</span>
               </div>
               <div>
                 <p className="text-[#716860] text-sm">Move to</p>
-                <p className="text-white text-base font-medium">{destination.name}</p>
+                <p className="text-foreground text-base font-medium">{destination.name}</p>
               </div>
             </div>
             <div className="text-right">
               <p className="text-[#716860] text-sm">Balance</p>
-              <p className="text-white text-base font-medium">{formatCurrency(destination.balance)}</p>
+              <p className="text-foreground text-base font-medium">{formatCurrency(destination.balance)}</p>
             </div>
           </div>
         </div>

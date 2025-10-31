@@ -154,25 +154,25 @@ const AccountDetail: React.FC = () => {
 
 
   return (
-    <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto flex flex-col">
+    <div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto flex flex-col">
       <div className="px-4 py-6 flex flex-col flex-1">
-        <button className="mb-4" onClick={() => navigate('/')}>
+        <button className="mb-4 text-foreground" onClick={() => navigate('/')}>
           <ArrowLeft className="w-6 h-6" />
         </button>
         <div>
           {/* <div className="mb-2 text-sm opacity-50">{config.display}</div> */}
           <div className="text-2xl mb-1 font-semibold">{config.display}</div>
           <div className="mb-4 text-sm opacity-80">{config.subtitle}</div>
-          <div className="rounded-lg bg-[#211E1E] flex items-center justify-between pt-2 pb-2 pl-2 pr-5 mb-4">
+          <div className="rounded-lg bg-white dark:bg-[#211E1E] border border-border flex items-center justify-between pt-2 pb-2 pl-2 pr-5 mb-4">
             <div className="flex items-center gap-2">{/* TODO: Icon if needed */}
-              <div className="w-10 h-10 flex items-center justify-center bg-[#000] rounded-[4px]"
+              <div className="w-10 h-10 flex items-center justify-center bg-[#F3F3F3] dark:bg-[#000] rounded-[4px]"
               style={{ color: account.color }}
               >
               <span className="text-2xl">{account.icon}</span>
             </div>
-              <span className="font-medium">Balance</span>
+              <span className="font-medium text-foreground">Balance</span>
             </div>
-            <div className="text-lg ml-2 font-semibold">{formatCurrency(account.balance)}</div>
+            <div className="text-lg ml-2 font-semibold text-foreground">{formatCurrency(account.balance)}</div>
           </div>
           {config.showCard && (
             <div className="bg-[url('/card-background.webp')] bg-cover bg-center aspect-[16/9] rounded-2xl p-4 flex flex-col items-start justify-center mb-4">

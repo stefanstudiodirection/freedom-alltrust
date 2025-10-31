@@ -47,30 +47,30 @@ export const ReviewTransfer: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white max-w-[480px] mx-auto flex flex-col">
+    <div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto flex flex-col">
       <div className="px-4 py-6 flex flex-col flex-1">
         {/* Header */}
         <header className="flex items-center mb-8">
           <button 
             onClick={handleBack}
-            className="w-12 h-12 rounded-full bg-[#211E1E] flex items-center justify-center hover:bg-[#2a2626] transition-colors"
+            className="w-12 h-12 rounded-full bg-white dark:bg-[#211E1E] border border-border flex items-center justify-center hover:bg-gray-50 dark:hover:bg-[#2a2626] transition-colors text-foreground"
             aria-label="Go back"
           >
             <ArrowLeft className="w-6 h-6" />
           </button>
-          <h1 className="flex-1 text-center text-lg font-medium pr-12">Review transfer</h1>
+          <h1 className="flex-1 text-center text-lg font-medium pr-12 text-foreground">Review transfer</h1>
         </header>
 
         {/* Amount Display */}
         <div className="mb-6">
-          <p className="text-white text-sm mb-2">Amount to move</p>
+          <p className="text-foreground text-sm mb-2">Amount to move</p>
           <div className="flex items-center justify-between">
-            <p className="text-white text-4xl font-normal">
+            <p className="text-foreground text-4xl font-normal">
               £{amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>
             <div className="flex items-center gap-2">
               <span className="text-2xl">🇬🇧</span>
-              <span className="text-white text-sm">GBP (£)</span>
+              <span className="text-foreground text-sm">GBP (£)</span>
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@ export const ReviewTransfer: React.FC = () => {
         {/* Transfer Summary Cards */}
         <div className="space-y-4 mb-6">
           {/* Move From Card */}
-          <div className="bg-[#211E1E] rounded-lg p-4">
+          <div className="bg-white dark:bg-[#211E1E] border border-border rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div 
@@ -89,12 +89,12 @@ export const ReviewTransfer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[#716860] text-sm">Move from</p>
-                  <p className="text-white text-base font-medium">{source.name}</p>
+                  <p className="text-foreground text-base font-medium">{source.name}</p>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-[#716860] text-sm">Balance after transfer</p>
-                <p className="text-white text-base font-medium">
+                <p className="text-foreground text-base font-medium">
                   £{newSourceBalance.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
               </div>
@@ -102,7 +102,7 @@ export const ReviewTransfer: React.FC = () => {
           </div>
 
           {/* Move To Card */}
-          <div className="bg-[#211E1E] rounded-lg p-4">
+          <div className="bg-white dark:bg-[#211E1E] border border-border rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div 
@@ -113,12 +113,12 @@ export const ReviewTransfer: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-[#716860] text-sm">Move to</p>
-                  <p className="text-white text-base font-medium">{destination.name}</p>
+                  <p className="text-foreground text-base font-medium">{destination.name}</p>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-[#716860] text-sm">Balance after transfer</p>
-                <p className="text-white text-base font-medium">
+                <p className="text-foreground text-base font-medium">
                   £{newDestinationBalance.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </p>
               </div>
@@ -128,13 +128,13 @@ export const ReviewTransfer: React.FC = () => {
 
         {/* Retirement Impact Warning - Only show if pension is involved */}
         {showRetirementWarning && (
-          <div className="bg-[#211E1E] rounded-lg p-4 mb-6">
+          <div className="bg-white dark:bg-[#211E1E] border border-border rounded-lg p-4 mb-6">
             <div className="flex items-start gap-3">
               <div className="flex-shrink-0">
                 <AlertTriangle className="w-6 h-6 text-[#E4B33D]" />
               </div>
               <div>
-                <h3 className="text-white text-base font-medium mb-2">Retirement impact</h3>
+                <h3 className="text-foreground text-base font-medium mb-2">Retirement impact</h3>
                 <p className="text-[#716860] text-sm leading-relaxed">
                   Taking £{amount.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} now equals £{retirementImpact.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} less at retirement due to lost growth
                 </p>

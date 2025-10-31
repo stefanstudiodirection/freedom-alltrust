@@ -43,20 +43,20 @@ export const BottomNavigation: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="items-center flex w-full text-sm text-white font-normal whitespace-nowrap text-center leading-[1.2] bg-black pt-4 pb-6 px-2 border-t border-t-[#2C2C2E] fixed bottom-0 left-0 right-0 z-50">
+    <nav className="items-center flex w-full text-sm font-normal whitespace-nowrap text-center leading-[1.2] bg-white dark:bg-black pt-4 pb-6 px-2 border-t border-[#E5E5EA] dark:border-[#2C2C2E] fixed bottom-0 left-0 right-0 z-50">
       {navItems.map((item) => (
         <button
           key={item.id}
           className={`self-stretch flex flex-col items-center flex-1 shrink basis-[0%] my-auto hover:opacity-80 transition-opacity ${
-            isActive(item.path) ? "text-[#A488F5]" : "text-gray-400"
+            isActive(item.path) ? "text-[#A488F5]" : "text-[#716860] dark:text-gray-400"
           }`}
           onClick={() => navigate(item.path)}
           aria-pressed={isActive(item.path)}
         >
-          <div className={isActive(item.path) ? "text-[#A488F5]" : "text-gray-400"}>
+          <div className={isActive(item.path) ? "text-[#A488F5]" : "text-[#716860] dark:text-gray-400"}>
             {item.icon}
           </div>
-          <span className={`mt-1 text-xs ${isActive(item.path) ? "text-[#A488F5]" : "text-gray-400"}`}>
+          <span className={`mt-1 text-xs ${isActive(item.path) ? "text-[#A488F5]" : "text-[#716860] dark:text-gray-400"}`}>
             {item.label}
           </span>
         </button>
