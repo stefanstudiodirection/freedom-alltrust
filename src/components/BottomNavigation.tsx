@@ -24,13 +24,13 @@ const navItems: NavItem[] = [
   },
   {
     id: "budgeting",
-    label: "Content hub",
+    label: "Insights",
     path: "/budgeting",
     icon: <ChartPieIcon className="w-6 h-6" />,
   },
   {
     id: "learn",
-    label: "Learn",
+    label: "Content hub",
     path: "/learn",
     icon: <BookOpen className="w-6 h-6" />,
   },
