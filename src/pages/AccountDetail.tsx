@@ -216,7 +216,7 @@ const AccountDetail: React.FC = () => {
 	return (
 		<div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto flex flex-col">
 			<div className="px-4 py-6 flex flex-col flex-1">
-				<button className="mb-4 w-12 h-12 bg-white rounded-full flex items-center justify-center text-foreground" onClick={() => navigate("/")}>
+				<button className="mb-4 w-12 h-12 bg-white rounded-full flex items-center justify-center text-black" onClick={() => navigate("/")}>
 					<ArrowLeft className="w-6 h-6" />
 				</button>
 				<div>
