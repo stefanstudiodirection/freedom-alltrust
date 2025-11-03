@@ -153,12 +153,12 @@ export const HomeDark: React.FC = () => {
 
           <div className="flex w-full items-center gap-4 font-normal mt-4 overflow-x-auto">
             <PromotionCard
-              title="Boost Your Retirement Savings by 15%"
+              title="Maximise your retirement potential"
               backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/77d83e8891b893820180d5c1091f1c417adaa71d?placeholderIfAbsent=true"
               isWide={true}
             />
             <PromotionCard
-              title="Limited Time: Zero Fees on Contributions"
+              title="Save for your dream holiday"
               backgroundImage="https://api.builder.io/api/v1/image/assets/TEMP/ca2cd3deda67d27f0470bffdcaa474fd18a319eb?placeholderIfAbsent=true"
               isWide={true}
             />
