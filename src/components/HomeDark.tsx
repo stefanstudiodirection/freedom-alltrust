@@ -197,7 +197,7 @@ export const HomeDark: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex gap-4 overflow-x-auto">
+          <div className="flex gap-4 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide mt-4">
             {mockArticles.slice(1, 4).map((article) => (
               <LearningResourceCard
                 key={article.id}
