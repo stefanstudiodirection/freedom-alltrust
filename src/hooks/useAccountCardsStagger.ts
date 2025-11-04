@@ -12,11 +12,9 @@ export const useAccountCardsStagger = (containerRef: RefObject<HTMLElement>) => 
       gsap.fromTo(
         cards,
         {
-          opacity: 0,
           y: -74,
         },
         {
-          opacity: 1,
           y: 0,
           duration: 0.6,
           ease: "power2.out",
