@@ -206,7 +206,7 @@ export const MoveFunds: React.FC = () => {
           <Button 
             onClick={handleNext}
             disabled={!isValidAmount()}
-            className={`w-full h-14 text-base rounded-lg font-normal ${
+            className={`w-full h-14 text-xl rounded-lg font-normal ${
               isValidAmount() 
                 ? 'bg-[#A488F5] hover:bg-[#9575e8] text-white' 
                 : 'bg-[#2a2626] text-[#716860] cursor-not-allowed'
