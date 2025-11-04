@@ -74,10 +74,10 @@ const Transactions: React.FC = () => {
 				<div className="flex justify-between items-center mb-8">
 					<h1 className="text-[28px] font-semibold">Transactions</h1>
 					<div className="flex gap-3">
-						<button className="w-10 h-10 rounded-full bg-white dark:bg-[#1C1C1E] flex items-center justify-center">
+						<button className="w-12 h-12 rounded-full bg-white dark:bg-[#1C1C1E] flex items-center justify-center">
 							<Search className="w-5 h-5" />
 						</button>
-						<button className="w-10 h-10 rounded-full bg-white dark:bg-[#1C1C1E] flex items-center justify-center">
+						<button className="w-12 h-12 rounded-full bg-white dark:bg-[#1C1C1E] flex items-center justify-center">
 							<SlidersHorizontal className="w-5 h-5" />
 						</button>
 					</div>

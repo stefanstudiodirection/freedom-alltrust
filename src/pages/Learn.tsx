@@ -35,7 +35,7 @@ const Learn: React.FC = () => {
     <div className="min-h-screen bg-[#F3F3F3] dark:bg-black text-foreground max-w-[480px] mx-auto p-4">
       <button 
         onClick={() => navigate(-1)} 
-        className="mb-6 hover:opacity-70 transition-opacity"
+        className="mb-4 w-12 h-12 bg-white rounded-full flex items-center justify-center text-black"
         aria-label="Go back"
       >
         <ArrowLeft className="w-6 h-6" />
