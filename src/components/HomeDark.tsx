@@ -71,12 +71,12 @@ export const HomeDark: React.FC = () => {
 		gsap.fromTo(
 			mainRef.current,
 			{
-				y: 50,
+				y: 100,
 				opacity: 0,
 			},
 			{
 				y: 0,
-				opacity: 1.50,
+				opacity: 2,
 				duration: 0.6,
 				ease: "power2.out",
 			}
