@@ -18,7 +18,7 @@ export const CreditCard: React.FC<CreditCardProps> = ({
 	cardType,
 }) => {
 	return (
-		<div className="relative bg-[url('/alltrust-card-bg.webp')] bg-cover bg-center rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
+		<div className="relative bg-[url('/alltrust-card-bg.png')] bg-cover bg-center rounded-2xl p-6 flex flex-col justify-between overflow-hidden">
 			{/* Header */}
 			<div className="flex justify-between items-start relative z-10">
 				<div className="flex items-center gap-2">
